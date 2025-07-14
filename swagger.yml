@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: "HDponic Flask API"
+  description: "An API about hydroponic system"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+paths:
+
+  /parameters:
+    get:
+      operationId: "parameters.read_all"
+      tags:
+        - "parameters"
+      summary: "Read the list of parameters"
+      responses:
+        "200":
+          description: "Successfully read parameters list"
