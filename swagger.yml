@@ -1,20 +1,74 @@
+# swagger.yml
+
 openapi: 3.0.0
 info:
-  title: "HDponic Flask API"
-  description: "An API about hydroponic system"
+  title: "RP Flask REST API"
+  description: "An API about people and notes"
   version: "1.0.0"
 
 servers:
   - url: "/api"
 
-paths:
+components:
+  parameters:
+    lname:
+      name: "lname"
+      description: "Last name of the person to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
 
+  schemas:
+    Person:
+      type: "object"
+      required:
+        - lname
+      properties:
+        fname:
+          type: "string"
+        lname:
+          type: "string"
+
+
+paths:
   /parameters:
     get:
       operationId: "parameters.read_all"
       tags:
-        - "parameters"
+        - "Parameters"
       summary: "Read the list of parameters"
       responses:
         "200":
-          description: "Successfully read parameters list"
+          description: "Successfully read parameter's list"
+
+
+  /parameters/{lname}:
+    get:
+      operationId: "parameters.read_one"
+      tags:
+        - parameter
+      summary: "Read one parameter"
+      parameters:
+        - $ref: "#/components/parameters/lname"
+      responses:
+        "200":
+          description: "Successfully read parameter"
+
+
+    put:
+      tags:
+        - parameter
+      operationId: "parameters.update"
+      summary: "Update a parameter"
+      parameters:
+        - $ref: "#/components/parameters/lname"
+      responses:
+        "200":
+          description: "Successfully updated person"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "parameter"
+              $ref: "#/components/schemas/Person"

@@ -1,0 +1,48 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma page Flask</title>
+</head>
+  <style>
+    body { font-family: 'Times New Roman', Times, serif, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+    h1 { color: #2d7cf7; }
+    ul { line-height: 1.8; }
+    .contact { margin-top: 20px; font-style: italic; }
+
+    table { border-collapse: collapse; width: 80%; margin: auto; }
+    th, td { border: 1px solid #0f0f0f; padding: 8px; text-align: center; }
+    th { background-color: #72e672; }
+  </style>
+<body>
+    <div class = "container" > 
+        <h1>Hello guys, I'm Remy Sainclair!</h1>
+        <p>Welcome to my first API!</p>
+        <ul>
+            {% for i in data %}
+            <li>{{ i.Parameters }} {{ i.value }} {{ i.timestamp }} </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <h2 style="text-align:center;">Données de votre systeme en temps reel</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameters</th>
+                <th>Value</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.Parameters }}</td>
+                <td>{{ row.value }}</td>
+                <td>{{ row.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
